@@ -28,11 +28,15 @@ export default {
       e.preventDefault();
       // Fields must be filled in
       if (username && password) {
-        let user = await axios.post("http://localhost:4000/auth/login", {
-          username,
-          password
-        });
-        this.$router.push("users");
+        try {
+          let user = await axios.post("http://localhost:4000/auth/login", {
+            username,
+            password
+          });
+          this.$router.push("users");
+        } catch(err) {
+          console.log('Wrong username or password')
+        }
       }
     }
   }
