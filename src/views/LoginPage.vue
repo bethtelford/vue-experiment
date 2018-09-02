@@ -13,22 +13,26 @@
 
 
 <script>
+import axios from "axios";
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     return {
-      username: '',
-      password: ''
-    }
+      username: "",
+      password: ""
+    };
   },
   methods: {
-    login(e) {
+    async login(e) {
+      const { username, password } = this;
       e.preventDefault();
       // Fields must be filled in
-      if (this.username && this.password) {
-        console.log('login axios request here');
-        // push method to fire after HTTP response
-        this.$router.push('users')
+      if (username && password) {
+        let user = await axios.post("http://localhost:4000/auth/login", {
+          username,
+          password
+        });
+        this.$router.push("users");
       }
     }
   }

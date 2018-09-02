@@ -18,4 +18,6 @@ massive(process.env.DB_CONNECTION_STRING)
   server.listen(port, () => console.log(`Server running on port ${port}`));
 });
 
-server.post('/auth/register', authCtrl.register)
+server.post('/auth/register', authCtrl.register);
+
+server.post('/auth/login', authCtrl.login);
