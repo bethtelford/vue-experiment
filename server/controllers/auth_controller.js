@@ -9,8 +9,12 @@ module.exports = {
   login: async (req, res) => {
     const db = req.app.get('db');
     const { username, password } = req.body;
-    const user = await db.login({username, password});
-    console.log(user);
-    res.status(200).send(user[0])
+    let user = await db.login({username, password});
+    user = user[0];
+    if (user) {
+      res.status(200).send(user)
+    } else {
+      res.sendStatus(401)
+    }
   }
 }
