@@ -29,6 +29,7 @@
 
 
 <script>
+import axios from 'axios';
 export default {
   name: "Register",
   data() {
@@ -55,7 +56,7 @@ export default {
       }
     },
     validatePasswordLength() {
-      if (this.password.length >= 12) {
+      if (this.password.length >= 2) {
         this.allowModule = true;
       } else {
         console.log("you need a longer password", this.password);
@@ -85,10 +86,11 @@ export default {
       }
       // this.showModule = true;
     },
-    register() {
-      console.log("axios request here");
-      // push method to fire after HTTP response
-      this.$router.push('login')
+    async register() {
+      const { name, username, email, password } = this;
+      // full path until proxy issue can be solved
+      let user = await axios.post('http://localhost:4000/auth/register', {name, username, email, password});
+      this.$router.push('users');
     },
     cancel() {
       this.showModule = false;
