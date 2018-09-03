@@ -14,6 +14,7 @@
 
 <script>
 import axios from "axios";
+import { mapMutations } from "vuex";
 export default {
   name: "Login",
   data() {
@@ -23,6 +24,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["updateUser"]),
     async login(e) {
       const { username, password } = this;
       e.preventDefault();
@@ -33,9 +35,10 @@ export default {
             username,
             password
           });
+          this.updateUser(user.data);
           this.$router.push("users");
-        } catch(err) {
-          console.log('Wrong username or password')
+        } catch (err) {
+          console.log("Wrong username or password");
         }
       }
     }
