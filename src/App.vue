@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link>
-      <router-link to="/users">Users</router-link>
-    </div>
+    <the-nav-bar/>
     <router-view/>
   </div>
 </template>
 
-<style>
-
-</style>
+<script>
+import TheNavBar from "./components/TheNavBar.vue";
+export default {
+  name: "App",
+  components: { TheNavBar }
+};
+</script>
