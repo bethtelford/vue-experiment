@@ -19,6 +19,7 @@
       />
       <button>Complete</button>
     </form>
+    <span>Already have an account? <router-link to='/login'>Login</router-link></span>
     <div v-show="showModule">
       I am the module 
       <button @click="register">Confirm</button>
