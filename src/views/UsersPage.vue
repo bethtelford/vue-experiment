@@ -39,6 +39,8 @@ export default {
       } catch (err) {
         this.$router.push("login");
       }
+    } else {
+      this.fetchUsers();
     }
   },
   methods: {
