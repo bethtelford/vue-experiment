@@ -23,6 +23,19 @@ export default {
       password: ""
     };
   },
+  async mounted() {
+    if (!this.$store.state.name) {
+      try {
+        let user = await axios.get("/api/user");
+        this.updateUser(user.data);
+        this.$router.push("login");
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      this.$router.push("users");
+    }
+  },
   methods: {
     ...mapMutations(["updateUser"]),
     async login(e) {
@@ -31,7 +44,7 @@ export default {
       // Fields must be filled in
       if (username && password) {
         try {
-          let user = await axios.post("http://localhost:4000/auth/login", {
+          let user = await axios.post("/auth/login", {
             username,
             password
           });

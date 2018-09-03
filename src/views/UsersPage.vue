@@ -11,12 +11,27 @@
 
 
 <script>
+import axios from "axios";
+import { mapMutations } from "vuex";
 export default {
-  name: 'Users',
+  name: "Users",
   data() {
     return {
-      users: ['test', 'test']
+      users: ["test", "test"]
+    };
+  },
+  async mounted() {
+    if (!this.$store.state.name) {
+      try {
+        let user = await axios.get("/api/user");
+        this.updateUser(user.data);
+      } catch (err) {
+        this.$router.push("login");
+      }
     }
+  },
+  methods: {
+    ...mapMutations(["updateUser"])
   }
 };
 </script>
