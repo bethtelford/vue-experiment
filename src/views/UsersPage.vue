@@ -6,6 +6,16 @@
       <p>{{$store.state.username}}</p>
       <p>{{$store.state.email}}</p>
     </div>
+    <ul>
+      <li 
+        v-for="user in users"
+        v-bind:key="user.id"
+      >
+        <p>{{user.name}}</p>
+        <p>{{user.username}}</p>
+        <p>{{user.email}}</p>
+      </li>
+    </ul>
   </div>
 </template>
 
