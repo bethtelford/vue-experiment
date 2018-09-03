@@ -6,5 +6,11 @@ module.exports = {
     } else {
       res.sendStatus(401);
     }
+  },
+  fetchUsers: async (req, res) => {
+    const db = req.app.get('db');
+    const { id } = req.session.user;
+    const users = await db.fetch_users({ id });
+    res.status(200).send(users);
   }
 }
