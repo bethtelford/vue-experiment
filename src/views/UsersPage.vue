@@ -29,9 +29,15 @@ export default {
         this.$router.push("login");
       }
     }
+    this.fetchUsers();
   },
   methods: {
-    ...mapMutations(["updateUser"])
+    ...mapMutations(["updateUser"]),
+    async fetchUsers() {
+      const users = await axios.get('/api/users');
+      this.users = users.data
+      console.log(this.users)
+    }
   }
 };
 </script>
