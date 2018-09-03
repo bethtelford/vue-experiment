@@ -27,7 +27,7 @@ export default {
   components: { UserTile },
   data() {
     return {
-      users: ["test", "test"]
+      users: []
     };
   },
   async mounted() {
@@ -35,11 +35,11 @@ export default {
       try {
         let user = await axios.get("/api/user");
         this.updateUser(user.data);
+        this.fetchUsers();
       } catch (err) {
         this.$router.push("login");
       }
     }
-    this.fetchUsers();
   },
   methods: {
     ...mapMutations(["updateUser"]),
