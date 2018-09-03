@@ -20,20 +20,18 @@ export default {
       users: ["test", "test"]
     };
   },
-  methods: {
-    ...mapMutations(["updateUser"])
-  },
   async mounted() {
     if (!this.$store.state.name) {
       try {
         let user = await axios.get("/api/user");
-        console.log(user);
         this.updateUser(user.data);
       } catch (err) {
-        console.log(err);
         this.$router.push("login");
       }
     }
+  },
+  methods: {
+    ...mapMutations(["updateUser"])
   }
 };
 </script>
