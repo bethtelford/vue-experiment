@@ -29,6 +29,8 @@ server.post('/auth/register', authCtrl.register);
 
 server.post('/auth/login', authCtrl.login);
 
+server.post('/auth/logout', authCtrl.logout);
+
 server.get('/api/user', userCtrl.checkUser);
 
 server.get('/api/users', userCtrl.fetchUsers);
