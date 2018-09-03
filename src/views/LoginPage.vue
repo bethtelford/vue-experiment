@@ -31,7 +31,7 @@ export default {
       // Fields must be filled in
       if (username && password) {
         try {
-          let user = await axios.post("http://localhost:4000/auth/login", {
+          let user = await axios.post("/auth/login", {
             username,
             password
           });

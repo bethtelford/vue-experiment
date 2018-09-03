@@ -4,6 +4,7 @@ const express = require('express'),
       cors = require('cors'),
       session = require('express-session'),
       authCtrl = require('./controllers/auth_controller'),
+      userCtrl = require('./controllers/user_controller'),
       port = 4000;
 require('dotenv').config();
 
@@ -27,3 +28,5 @@ massive(process.env.DB_CONNECTION_STRING)
 server.post('/auth/register', authCtrl.register);
 
 server.post('/auth/login', authCtrl.login);
+
+server.get('/api/user', userCtrl.checkUser);

@@ -30,8 +30,8 @@
 
 
 <script>
-import axios from 'axios';
-import { mapMutations } from 'vuex';
+import axios from "axios";
+import { mapMutations } from "vuex";
 export default {
   name: "Register",
   data() {
@@ -48,7 +48,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['updateUser']),
+    ...mapMutations(["updateUser"]),
     validateEmail() {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (re.test(String(this.email).toLowerCase())) {
@@ -91,10 +91,14 @@ export default {
     },
     async register() {
       const { name, username, email, password } = this;
-      // full path until proxy issue can be solved
-      let user = await axios.post('http://localhost:4000/auth/register', {name, username, email, password});
+      let user = await axios.post("/auth/register", {
+        name,
+        username,
+        email,
+        password
+      });
       this.updateUser(user.data);
-      this.$router.push('users');
+      this.$router.push("users");
     },
     cancel() {
       this.showModule = false;
