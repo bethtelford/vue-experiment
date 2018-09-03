@@ -6,16 +6,13 @@
       <p>{{$store.state.username}}</p>
       <p>{{$store.state.email}}</p>
     </div>
-    <ul>
-      <li 
+    <div class='users-list'>
+      <user-tile
         v-for="user in users"
         v-bind:key="user.id"
-      >
-        <p>{{user.name}}</p>
-        <p>{{user.username}}</p>
-        <p>{{user.email}}</p>
-      </li>
-    </ul>
+        v-bind:user="user"
+      />
+    </div>
   </div>
 </template>
 
@@ -23,8 +20,11 @@
 <script>
 import axios from "axios";
 import { mapMutations } from "vuex";
+
+import UserTile from "./../components/UserTile.vue";
 export default {
   name: "Users",
+  components: { UserTile },
   data() {
     return {
       users: ["test", "test"]
@@ -44,9 +44,9 @@ export default {
   methods: {
     ...mapMutations(["updateUser"]),
     async fetchUsers() {
-      const users = await axios.get('/api/users');
-      this.users = users.data
-      console.log(this.users)
+      const users = await axios.get("/api/users");
+      this.users = users.data;
+      console.log(this.users);
     }
   }
 };
