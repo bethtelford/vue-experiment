@@ -31,5 +31,9 @@ export default {
   flex-direction: column;
   width: 400px;
 }
+.page{
+  min-height: 100vh;
+  padding: 200px 300px 100px;
+}
 
 </style>

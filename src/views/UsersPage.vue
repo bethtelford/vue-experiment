@@ -1,11 +1,17 @@
 <template>
-  <div class="users">
-    <h1>This is the users page</h1>
-    <div class='user'>
-      <p>{{$store.state.name}}</p>
-      <p>{{$store.state.username}}</p>
-      <p>{{$store.state.email}}</p>
-    </div>
+  <div class="page">
+    <v-layout 
+      justify-space-between 
+      align-start
+    >
+    <v-card 
+      color='#3D8C72' 
+      width='400px'
+    >
+      <v-card-text>{{$store.state.name}}</v-card-text>
+      <v-card-text>{{$store.state.username}}</v-card-text>
+      <v-card-text>{{$store.state.email}}</v-card-text>
+    </v-card>
     <div class='users-list'>
       <user-tile
         v-for="user in users"
@@ -13,6 +19,7 @@
         v-bind:user="user"
       />
     </div>
+    </v-layout>
   </div>
 </template>
 
@@ -53,3 +60,6 @@ export default {
   }
 };
 </script>
+
+<style>
+</style>

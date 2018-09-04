@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div class="page">
     <v-layout 
       align-center 
       justify-center 
@@ -167,8 +167,4 @@ export default {
 </script>
 
 <style scoped>
-.register {
-  height: 100vh;
-  padding: 200px 300px;
-}
 </style>

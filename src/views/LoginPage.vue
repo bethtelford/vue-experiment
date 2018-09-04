@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="page">
     <v-layout 
       align-center 
       justify-center 
@@ -12,7 +12,9 @@
       >
       <v-text-field 
           label='Username' 
-          outline clearable
+          outline 
+          clearable
+          autofocus
           color='#3D8C72' 
           v-model="username" 
         />
@@ -84,8 +86,4 @@ export default {
 </script>
 
 <style>
-.login {
-  height: 100vh;
-  padding: 200px 300px;
-}
 </style>
