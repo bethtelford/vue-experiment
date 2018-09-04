@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
+  <v-app>
     <the-nav-bar/>
-    <router-view/>
-  </div>
+    <v-content>
+      <router-view/>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -12,3 +14,22 @@ export default {
   components: { TheNavBar }
 };
 </script>
+
+<style>
+.links {
+  color: black;
+}
+.links:hover {
+  color:#3D8C72;
+}
+.form-container {
+  padding: 70px;
+  background-color: #C4C4C4;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+</style>
