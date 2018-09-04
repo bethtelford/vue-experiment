@@ -7,19 +7,18 @@ const express = require('express'),
       userCtrl = require('./controllers/user_controller'),
       port = 4000;
 require('dotenv').config();
+const { DB_CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 const server = express();
 
 server.use(bodyParser.json());
-// setup until proxy can be figured out
-server.use(cors());
 server.use(session({
-  secret: 'faslkjouiewfjdsoieru890y7u439085urtegfiod90c8v7fgyirtuh4j3es',
+  secret: SESSION_SECRET,
   resave: false, 
   saveUninitialized: false
 }))
 
-massive(process.env.DB_CONNECTION_STRING)
+massive(DB_CONNECTION_STRING)
 .then(db => {
   server.set('db', db);
   server.listen(port, () => console.log(`Server running on port ${port}`));

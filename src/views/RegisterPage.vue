@@ -152,7 +152,7 @@ export default {
       }
     },
     validatePasswordLength() {
-      if (this.password.length >= 2) {
+      if (this.password.length >= 12) {
         this.allowModule = true;
         return true
       } else {
