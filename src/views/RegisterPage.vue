@@ -11,6 +11,7 @@
         class='form' 
       >
         <v-text-field 
+          style='{height: 60px}'
           label='Name' 
           outline 
           autofocus 
