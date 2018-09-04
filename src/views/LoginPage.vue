@@ -1,13 +1,38 @@
 <template>
   <div class="login">
-    <form @submit="login">
-      <input v-model="username">
-      <input 
-        v-model="password"
-        type="password">
-      <button>Login</button>
-    </form>
-    <span>Don't have an account? <router-link to='/signup'>Signup</router-link></span>
+    <v-layout 
+      align-center 
+      justify-center 
+      column 
+      class='form-container'
+    >
+    <v-form 
+        @submit.prevent="login" 
+        class='form' 
+      >
+      <v-text-field 
+          label='Username' 
+          outline clearable
+          color='#3D8C72' 
+          v-model="username" 
+        />
+      <v-text-field 
+          label='Password' 
+          outline 
+          clearable 
+          color='#3D8C72'
+          v-model="password"
+          type='password'
+        />
+      <v-btn 
+        type='submit' 
+        color='#3D8C72'
+      >
+        Log In
+      </v-btn>
+    </v-form>
+    <span>Don't have an account? <router-link class='links' to='/signup'>Signup</router-link></span>
+    </v-layout>
   </div>
 </template>
 
@@ -38,9 +63,8 @@ export default {
   },
   methods: {
     ...mapMutations(["updateUser"]),
-    async login(e) {
+    async login() {
       const { username, password } = this;
-      e.preventDefault();
       // Fields must be filled in
       if (username && password) {
         try {
@@ -58,3 +82,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.login {
+  height: 100vh;
+  padding: 200px 300px;
+}
+</style>
