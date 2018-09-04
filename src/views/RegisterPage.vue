@@ -63,10 +63,45 @@
       </v-form>
       <span>Already have an account? <router-link class='links' to='/login'>Login</router-link></span>
     </v-layout>
-    <div v-show="showModule">
-      I am the module 
-      <button @click="register">Confirm</button>
-      <button @click="cancel">Cancel</button>
+    <div 
+      @click="cancel"
+      v-show="showModule"
+      class='module-background'
+    >
+      <v-card
+        width='500px'
+        height='300px'
+        color='#C4C4C4'
+        class='module'
+      >
+        <v-icon 
+          @click='cancel'
+          color='#bc1c1c' 
+          class='cancel-button'
+        >cancel</v-icon>
+        <h2>Does your information all look correct?</h2>
+        <v-card-text><strong>Name:</strong> {{name}}</v-card-text>
+        <v-card-text><strong>Username:</strong> {{username}}</v-card-text>
+        <v-card-text><strong>Email:</strong> {{email}}</v-card-text>
+        <v-btn 
+          @click="register" 
+          color='#3D8C72'
+          absolute
+          left
+          class='buttons'
+        >
+          Confirm
+        </v-btn>
+        <v-btn 
+          @click="cancel" 
+          color='#bc1c1c'
+          absolute
+          right
+          class='buttons'
+        >
+          Cancel
+        </v-btn>
+      </v-card>
     </div>
   </div>
 </template>
@@ -168,4 +203,28 @@ export default {
 </script>
 
 <style scoped>
+.module-background {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(44, 44, 44, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.module {
+  padding: 25px;
+  position: relative;
+}
+.cancel-button {
+  position: absolute;
+  right: -25px;
+  top: -25px;
+}
+.buttons {
+  bottom: 20px;
+}
 </style>
