@@ -11,48 +11,48 @@
         class='form' 
       >
         <v-text-field 
-          style='{height: 60px}'
+          v-model="name"
           label='Name' 
           outline 
-          autofocus 
           clearable 
           color='#3D8C72' 
-          v-model="name"
+          autofocus 
         />
         <v-text-field 
-          label='Username' 
-          outline clearable
-          color='#3D8C72' 
           v-model="username" 
+          label='Username' 
+          outline 
+          clearable
+          color='#3D8C72' 
         />
         <v-text-field 
+          v-model="email" 
+          :rules="[validateEmail]"
+          validate-on-blur
           label='Email' 
           outline 
           clearable 
           color='#3D8C72'
-          v-model="email" 
-          :rules="[validateEmail]"
-          validate-on-blur
         />
         <v-text-field 
-          label='Password' 
-          outline 
-          clearable 
-          color='#3D8C72'
           v-model="password" 
           :rules="[validatePasswordLength]"
           validate-on-blur
-          type='password'
-        />
-        <v-text-field 
-          label='Confirm Password' 
+          label='Password' 
           outline 
           clearable 
+          type='password'
           color='#3D8C72'
+        />
+        <v-text-field 
           v-model="confirmPassword"
           :rules="[validatePasswordMatch]"
           validate-on-blur
+          label='Confirm Password' 
+          outline 
+          clearable 
           type='password'
+          color='#3D8C72'
         />
         <v-btn 
           type='submit' 
@@ -61,7 +61,14 @@
           Create Account
         </v-btn>
       </v-form>
-      <span>Already have an account? <router-link class='links' to='/login'>Login</router-link></span>
+      <span>Already have an account? 
+        <router-link 
+          to='/login'
+          class='links' 
+        >
+          Login
+        </router-link>
+      </span>
     </v-layout>
     <div 
       @click="cancel"
@@ -85,18 +92,18 @@
         <v-card-text><strong>Email:</strong> {{email}}</v-card-text>
         <v-btn 
           @click="register" 
-          color='#3D8C72'
           absolute
           left
+          color='#3D8C72'
           class='buttons'
         >
           Confirm
         </v-btn>
         <v-btn 
           @click="cancel" 
-          color='#bc1c1c'
           absolute
           right
+          color='#bc1c1c'
           class='buttons'
         >
           Cancel
@@ -110,8 +117,9 @@
 <script>
 import axios from "axios";
 import { mapMutations } from "vuex";
+
 export default {
-  name: "Register",
+  name: "RegisterPage",
   data() {
     return {
       name: "",
@@ -146,29 +154,26 @@ export default {
         this.allowModule = true;
         return true;
       } else {
-        console.log("you need a valid email address");
         this.allowModule = false;
-        return 'You need to enter a valid email address'
+        return "You need to enter a valid email address";
       }
     },
     validatePasswordLength() {
       if (this.password.length >= 12) {
         this.allowModule = true;
-        return true
+        return true;
       } else {
-        console.log("you need a longer password", this.password);
         this.allowModule = false;
-        return "You need a longer password"
+        return "You need a longer password";
       }
     },
     validatePasswordMatch() {
       if (this.password === this.confirmPassword) {
         this.allowModule = true;
-        return true
+        return true;
       } else {
-        console.log("does not match");
         this.allowModule = false;
-        return "Passwords don't match"
+        return "Passwords don't match";
       }
     },
     toggleModule() {
@@ -184,6 +189,9 @@ export default {
         this.showModule = true;
       }
     },
+    cancel() {
+      this.showModule = false;
+    },
     async register() {
       const { name, username, email, password } = this;
       let user = await axios.post("/auth/register", {
@@ -194,9 +202,6 @@ export default {
       });
       this.updateUser(user.data);
       this.$router.push("users");
-    },
-    cancel() {
-      this.showModule = false;
     }
   }
 };
