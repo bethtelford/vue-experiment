@@ -1,25 +1,62 @@
 <template>
   <div class="register">
-    <form @submit="toggleModule">
-      Name: <input v-model="name"/>
-      Username: <input v-model="username"/>
-      Email: <input 
-        v-model="email" 
-        @blur='validateEmail'
-      />
-      Password: <input 
-        v-model="password" 
-        @blur="validatePasswordLength"
-        type='password'
-      />
-      Confirm Password: <input 
-        v-model="confirmPassword"
-        @blur="validatePasswordMatch"
-        type='password'
-      />
-      <button>Complete</button>
-    </form>
-    <span>Already have an account? <router-link to='/login'>Login</router-link></span>
+    <v-layout 
+      align-center 
+      justify-center 
+      column 
+      class='form-container'
+    >
+      <v-form 
+        @submit="toggleModule" 
+        class='form' 
+      >
+        <v-text-field 
+          label='Name' 
+          outline 
+          autofocus 
+          clearable 
+          color='#3D8C72' 
+          v-model="name"
+        />
+        <v-text-field 
+          label='Username' 
+          outline clearable
+          color='#3D8C72' 
+          v-model="username" 
+        />
+        <v-text-field 
+          label='Email' 
+          outline 
+          clearable 
+          color='#3D8C72'
+          v-model="email" 
+          :rules="[validateEmail]"
+          validate-on-blur
+        />
+        <v-text-field 
+          label='Password' 
+          outline 
+          clearable 
+          color='#3D8C72'
+          v-model="password" 
+          :rules="[validatePasswordLength]"
+          validate-on-blur
+          type='password'
+        />
+        <v-text-field 
+          label='Confirm Password' 
+          outline 
+          clearable 
+          color='#3D8C72'
+          v-model="confirmPassword"
+          :rules="[validatePasswordMatch]"
+          validate-on-blur
+          type='password'
+        />
+        <v-btn color='#3D8C72'>Create Account</v-btn>
+      </v-form>
+      <span>Already have an account? <router-link class='links' to='/login'>Login</router-link></span>
+    </v-layout>
     <div v-show="showModule">
       I am the module 
       <button @click="register">Confirm</button>
@@ -36,7 +73,7 @@ export default {
   name: "Register",
   data() {
     return {
-      name: "test",
+      name: "",
       username: "",
       email: "",
       password: "",
@@ -66,25 +103,31 @@ export default {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (re.test(String(this.email).toLowerCase())) {
         this.allowModule = true;
+        return true;
       } else {
         console.log("you need a valid email address");
         this.allowModule = false;
+        return 'You need to enter a valid email address'
       }
     },
     validatePasswordLength() {
       if (this.password.length >= 2) {
         this.allowModule = true;
+        return true
       } else {
         console.log("you need a longer password", this.password);
         this.allowModule = false;
+        return "You need a longer password"
       }
     },
     validatePasswordMatch() {
       if (this.password === this.confirmPassword) {
         this.allowModule = true;
+        return true
       } else {
         console.log("does not match");
         this.allowModule = false;
+        return "Passwords don't match"
       }
     },
     toggleModule(e) {
@@ -120,8 +163,9 @@ export default {
 };
 </script>
 
-<style>
-input {
-  border: 1px solid black;
+<style scoped>
+.register {
+  height: 100vh;
+  padding: 200px 300px;
 }
 </style>
