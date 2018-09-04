@@ -30,6 +30,10 @@ export default {
   display: flex;
   flex-direction: column;
   width: 400px;
+} 
+.page{
+  min-height: 100vh;
+  padding: 15vh 300px 10vh;
 }
 
 </style>

@@ -1,9 +1,12 @@
 <template>
-  <div class='user-tile'>
-    <p>{{user.name}}</p>
-    <p>{{user.username}}</p>
-    <p>{{user.email}}</p>
-  </div>
+  <v-card 
+    width='450px'
+    class='user'
+  >
+    <v-card-text>{{user.name}}</v-card-text>
+    <v-card-text>{{user.username}}</v-card-text>
+    <v-card-text>{{user.email}}</v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -16,7 +19,10 @@ export default {
 </script>
 
 <style>
-.user-tile {
-  border: 1px solid black;
+.user {
+  margin: 0 0 20px;
+}
+.user:last-child {
+  margin: 0;
 }
 </style>

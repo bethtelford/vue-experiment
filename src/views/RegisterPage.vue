@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div class="page">
     <v-layout 
       align-center 
       justify-center 
@@ -11,6 +11,7 @@
         class='form' 
       >
         <v-text-field 
+          style='{height: 60px}'
           label='Name' 
           outline 
           autofocus 
@@ -167,8 +168,4 @@ export default {
 </script>
 
 <style scoped>
-.register {
-  height: 100vh;
-  padding: 200px 300px;
-}
 </style>
