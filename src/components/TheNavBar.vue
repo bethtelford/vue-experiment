@@ -6,10 +6,9 @@
     >
       <h1>{{title}}</h1>
       <button 
-        class='logout links'
-        to='/login'
         @click="logout"
         v-show="showLogout"
+        class='logout links'
       >
         Logout
       </button>
@@ -20,6 +19,7 @@
 <script>
 import axios from "axios";
 import { mapMutations } from "vuex";
+
 export default {
   name: "TheNavBar",
   data() {

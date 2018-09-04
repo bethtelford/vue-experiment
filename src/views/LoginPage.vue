@@ -6,34 +6,41 @@
       column 
       class='form-container'
     >
-    <v-form 
-        @submit.prevent="login" 
-        class='form' 
-      >
-      <v-text-field 
-          label='Username' 
-          outline 
-          clearable
-          autofocus
-          color='#3D8C72' 
-          v-model="username" 
-        />
-      <v-text-field 
-          label='Password' 
-          outline 
-          clearable 
+      <v-form 
+          @submit.prevent="login" 
+          class='form' 
+        >
+        <v-text-field 
+            v-model="username" 
+            label='Username' 
+            outline 
+            clearable
+            autofocus
+            color='#3D8C72' 
+          />
+        <v-text-field 
+            v-model="password"
+            label='Password' 
+            outline 
+            clearable 
+            type='password'
+            color='#3D8C72'
+          />
+        <v-btn 
+          type='submit' 
           color='#3D8C72'
-          v-model="password"
-          type='password'
-        />
-      <v-btn 
-        type='submit' 
-        color='#3D8C72'
-      >
-        Log In
-      </v-btn>
-    </v-form>
-    <span>Don't have an account? <router-link class='links' to='/signup'>Signup</router-link></span>
+        >
+          Log In
+        </v-btn>
+      </v-form>
+      <span>Don't have an account? 
+        <router-link 
+          to='/signup'
+          class='links' 
+        >
+          Signup
+        </router-link>
+      </span>
     </v-layout>
   </div>
 </template>
@@ -42,8 +49,9 @@
 <script>
 import axios from "axios";
 import { mapMutations } from "vuex";
+
 export default {
-  name: "Login",
+  name: "LoginPage",
   data() {
     return {
       username: "",
@@ -84,6 +92,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>
