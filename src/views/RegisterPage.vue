@@ -138,7 +138,7 @@ export default {
       try {
         let user = await axios.get("/api/user");
         this.updateUser(user.data);
-        this.$router.push("login");
+        this.$router.push("users");
       } catch (err) {
         console.log(err);
       }
@@ -194,14 +194,18 @@ export default {
     },
     async register() {
       const { name, username, email, password } = this;
-      let user = await axios.post("/auth/register", {
-        name,
-        username,
-        email,
-        password
-      });
-      this.updateUser(user.data);
-      this.$router.push("users");
+      try {
+        let user = await axios.post("/auth/register", {
+          name,
+          username,
+          email,
+          password
+        });
+        this.updateUser(user.data);
+        this.$router.push("users");
+      } catch (err) {
+        console.log('oops the registration broke')
+      }
     }
   }
 };

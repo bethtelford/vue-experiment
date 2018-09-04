@@ -53,8 +53,12 @@ export default {
   methods: {
     ...mapMutations(["updateUser"]),
     async fetchUsers() {
-      const users = await axios.get("/api/users");
-      this.users = users.data;
+      try {
+        const users = await axios.get("/api/users");
+        this.users = users.data;
+      } catch (err) {
+        console.log('Something went wrong fetching the users')
+      }
     }
   }
 };

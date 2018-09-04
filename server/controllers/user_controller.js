@@ -10,7 +10,11 @@ module.exports = {
   fetchUsers: async (req, res) => {
     const db = req.app.get('db');
     const { id } = req.session.user;
-    const users = await db.fetch_users({ id });
-    res.status(200).send(users);
+    try {
+      const users = await db.fetch_users({ id });
+      res.status(200).send(users);
+    } catch (err) {
+      res.sendStatus(500);
+    }
   }
 }

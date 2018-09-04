@@ -22,6 +22,9 @@ massive(DB_CONNECTION_STRING)
 .then(db => {
   server.set('db', db);
   server.listen(port, () => console.log(`Server running on port ${port}`));
+})
+.catch(err => {
+  console.log('problem with connecting to the db', err)
 });
 
 server.post('/auth/register', authCtrl.register);
