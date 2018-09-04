@@ -7,7 +7,7 @@
       class='form-container'
     >
       <v-form 
-        @submit="toggleModule" 
+        @submit.prevent="toggleModule" 
         class='form' 
       >
         <v-text-field 
@@ -53,7 +53,12 @@
           validate-on-blur
           type='password'
         />
-        <v-btn color='#3D8C72'>Create Account</v-btn>
+        <v-btn 
+          type='submit' 
+          color='#3D8C72'
+        >
+          Create Account
+        </v-btn>
       </v-form>
       <span>Already have an account? <router-link class='links' to='/login'>Login</router-link></span>
     </v-layout>
@@ -130,8 +135,7 @@ export default {
         return "Passwords don't match"
       }
     },
-    toggleModule(e) {
-      e.preventDefault();
+    toggleModule() {
       // if allowModule is true, the data validation has been successful, and all fields must have values
       if (
         this.allowModule &&
@@ -143,7 +147,6 @@ export default {
       ) {
         this.showModule = true;
       }
-      // this.showModule = true;
     },
     async register() {
       const { name, username, email, password } = this;
